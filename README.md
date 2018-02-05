@@ -12,7 +12,7 @@ The scoring is the same as the real FRC game, which can be found here: https://e
 The main difference is that capturing the tower only requires one robot, since there aren't three robots on each alliance.
 #
 ### How to play
-Simply download/clone the repository and run the excecutable for your operating system.
+Download the .zip file for your operating system and extract it. There will be an excecutable file and a file containing all the necessary data. Run the excecutable and you should be good to go. After you play, there will be a new file created called 'scores.scores' which contains high score info. If you wish to reset the high scores, just delete the file.
 #
 Flying Toasters' website: https://www.theflyingtoasters.org/
 Godot website: https://godotengine.org/
