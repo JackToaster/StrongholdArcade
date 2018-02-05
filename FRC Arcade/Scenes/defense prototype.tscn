@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Textures/lowbar.png" type="Texture" id=1]
+[ext_resource path="res://Textures/lowbar bar.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/defense boundary.tscn" type="PackedScene" id=3]
+
+[node name="Defense name" type="Node2D"]
+
+[node name="low sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( -31.7642, -31.94 )
+transform/scale = Vector2( 0.496806, 0.496806 )
+z/z = 1
+z/relative = false
+texture = ExtResource( 1 )
+centered = false
+
+[node name="high sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( -31.7642, -31.94 )
+transform/scale = Vector2( 0.496806, 0.496806 )
+z/z = 5
+z/relative = false
+texture = ExtResource( 2 )
+centered = false
+
+[node name="defense boundary" parent="." instance=ExtResource( 3 )]
+
+

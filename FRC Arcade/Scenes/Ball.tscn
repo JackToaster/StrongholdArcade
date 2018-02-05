@@ -1,0 +1,212 @@
+[gd_scene load_steps=13 format=1]
+
+[ext_resource path="res://scripts/Ball.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Ball.png" type="Texture" id=2]
+[ext_resource path="res://scripts/shadow.gd" type="Script" id=3]
+[ext_resource path="res://Textures/white mist.png" type="Texture" id=4]
+[ext_resource path="res://Textures/grass dirt.png" type="Texture" id=5]
+[ext_resource path="res://Audio/crash1.smp" type="Sample" id=6]
+[ext_resource path="res://Audio/impact1.smp" type="Sample" id=7]
+[ext_resource path="res://Audio/impact2.smp" type="Sample" id=8]
+[ext_resource path="res://Audio/impact3.smp" type="Sample" id=9]
+[ext_resource path="res://Textures/rock.png" type="Texture" id=10]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 7.0
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/crash1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/impact1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/impact2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/impact3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+
+[node name="Ball" type="RigidBody2D" groups=[
+"balls",
+]]
+
+z/z = 2
+z/relative = false
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 2
+collision/mask = 55
+mode = 0
+mass = 0.2
+friction = 1.0
+bounce = 0.3
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = 1.0
+damp_override/angular = 3.0
+script/script = ExtResource( 1 )
+raising_time = 0.1
+score_start_time = 0.2
+score_end_time = 0.4
+landing_time = 0.6
+red_goal_groupname = "red goal"
+blue_goal_groupname = "blue goal"
+lin_damp = 1.0
+sound_min_velocity = 100.0
+sound_volume = 0.0
+
+[node name="shadow" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0.286926, 2.6113 )
+transform/scale = Vector2( 0.0491618, 0.0491617 )
+texture = ExtResource( 2 )
+modulate = Color( 0, 0, 0, 0.218588 )
+script/script = ExtResource( 3 )
+normal_offset = 3.0
+height_mult = 5.0
+time_to_highest = 0.3
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0.286926, -0.0338135 )
+transform/scale = Vector2( 0.0491618, 0.0491617 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="trail" type="Particles2D" parent="."]
+
+config/amount = 100
+config/lifetime = 1.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/texture = ExtResource( 4 )
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 7.96
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 0.3
+params/final_size = 0.05
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/initial_size = 0.14
+
+[node name="ground explosion" type="Particles2D" parent="."]
+
+config/amount = 500
+config/lifetime = 0.3
+config/emit_timeout = 0.1
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/texture = ExtResource( 5 )
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 63.13
+params/spin_velocity = 4.15
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 210.652
+params/initial_angle = 0.0
+params/initial_size = 0.11
+params/final_size = 0.01
+params/hue_variation = 1.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.84
+randomness/spin_velocity = -1.0
+randomness/hue_variation = 1.0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = -10.23
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 4096.0
+params/attenuation/distance_exp = 0.5
+config/polyphony = 1
+config/samples = SubResource( 2 )
+config/pitch_random = 0.321
+
+[node name="normal explosion" type="Particles2D" parent="."]
+
+z/z = 1
+config/amount = 1000
+config/lifetime = 1.0
+config/emit_timeout = 0.1
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/texture = ExtResource( 10 )
+params/direction = 0.0
+params/spread = 180.0
+params/linear_velocity = 69.26
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 245.015
+params/initial_angle = 0.0
+params/initial_size = 0.2
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.77
+
+[node name="free timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="body_enter" from="." to="." method="_on_Ball_body_enter"]
+
+[connection signal="timeout" from="free timer" to="." method="_on_free_timer_timeout"]
+
+

@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/defense.gd" type="Script" id=1]
+[ext_resource path="res://Textures/defense health.png" type="Texture" id=2]
+
+[node name="defense0" type="Node2D"]
+
+transform/pos = Vector2( 348.986, 199.338 )
+transform/scale = Vector2( 1.11768, 1.11517 )
+script/script = ExtResource( 1 )
+half_field = NodePath("../..")
+
+[node name="inner" type="Node2D" parent="."]
+
+editor/display_folded = true
+z/z = 1
+z/relative = false
+
+[node name="pair" type="Node2D" parent="inner"]
+
+editor/display_folded = true
+
+[node name="Sprite" type="Sprite" parent="inner/pair"]
+
+transform/pos = Vector2( -25, 0 )
+transform/scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="inner/pair"]
+
+transform/pos = Vector2( 25, 0 )
+transform/scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="outer" type="Node2D" parent="."]
+
+editor/display_folded = true
+z/z = 1
+z/relative = false
+
+[node name="pair1" type="Node2D" parent="outer"]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 20 )
+
+[node name="Sprite" type="Sprite" parent="outer/pair1"]
+
+transform/pos = Vector2( -25, 0 )
+transform/scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="outer/pair1"]
+
+transform/pos = Vector2( 25, 0 )
+transform/scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="pair2" type="Node2D" parent="outer"]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, -20 )
+
+[node name="Sprite" type="Sprite" parent="outer/pair2"]
+
+transform/pos = Vector2( -25, 0 )
+transform/scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="outer/pair2"]
+
+transform/pos = Vector2( 25, 0 )
+transform/scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 2 )
+
+

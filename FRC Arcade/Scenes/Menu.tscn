@@ -1,0 +1,293 @@
+[gd_scene load_steps=24 format=1]
+
+[ext_resource path="res://Textures/StoneWall.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/MenuBall.gd" type="Script" id=2]
+[ext_resource path="res://Textures/Ball.png" type="Texture" id=3]
+[ext_resource path="res://Textures/rock.png" type="Texture" id=4]
+[ext_resource path="res://Audio/impact1.smp" type="Sample" id=5]
+[ext_resource path="res://Audio/impact2.smp" type="Sample" id=6]
+[ext_resource path="res://Audio/impact3.smp" type="Sample" id=7]
+[ext_resource path="res://Textures/StrongholdLogo.png" type="Texture" id=8]
+[ext_resource path="res://fonts/Ringbearer.fnt" type="BitmapFont" id=9]
+[ext_resource path="res://Textures/tower2.png" type="Texture" id=10]
+[ext_resource path="res://Textures/Toaster 8bit.png" type="Texture" id=11]
+[ext_resource path="res://scripts/fadeOut.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/StreamPlayer.tscn" type="PackedScene" id=13]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 28.0
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/impact1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/impact2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/impact3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="GDScript" id=6]
+
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	set_process_input(true)"
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 107.527, -201.476, 103.308, 172.018, -136.805, 171.67, -139.929, -189.549 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -108.766, -285.915, -93.2788, -290.194, -46.1617, -292.391, 5.75397, -292.854, 55.6337, -289.616, 92.7891, -284.527, 115.184, -278.051, 107.527, -201.476, -139.929, -189.549, -144.359, -195.315, -143.914, -203.16 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -134.724, -283.733, -108.766, -285.915, -143.914, -203.16, -150.553, -212.835, -153.789, -220.534, -153.769, -263.985, -151.221, -279.466 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -151.221, -279.466, -153.769, -263.985, -156.05, -268.739 )
+
+[node name="Root" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+
+transform/pos = Vector2( 511.464, 304.451 )
+transform/scale = Vector2( 0.717621, 0.640371 )
+texture = ExtResource( 1 )
+modulate = Color( 1, 0.894531, 0.894531, 0.262314 )
+
+[node name="Ball" type="RigidBody2D" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( -87.3333, 212.106 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 0.2
+friction = 1.0
+bounce = 0.3
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 2 )
+start_pos = Vector2( 0, 650 )
+init_xvel = 600.0
+init_yvel = -900.0
+init_rand = 300.0
+init_rot = 0.0
+reset_y = 1500.0
+gravity = 200.0
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+
+transform/pos = Vector2( 0.326894, 0.0862341 )
+transform/scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="ParticleSpray" type="Particles2D" parent="Ball"]
+
+transform/pos = Vector2( 31.6218, 2.34366 )
+transform/scale = Vector2( 0.958147, 1.0542 )
+config/amount = 1000
+config/lifetime = 2.0
+config/emit_timeout = 0.1
+config/emitting = false
+config/process_mode = 0
+config/local_space = false
+config/texture = ExtResource( 4 )
+params/direction = 270.0
+params/spread = 124.33
+params/linear_velocity = 200.0
+params/spin_velocity = 4.4
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 350.0
+params/radial_accel = 1.28
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 0.23
+params/final_size = 0.02
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.85
+randomness/spin_velocity = 1.0
+randomness/initial_size = 0.51
+randomness/hue_variation = 0.35
+
+[node name="SamplePlayer2D" type="SamplePlayer" parent="Ball"]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = -9.45
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="Title" type="Sprite" parent="."]
+
+transform/pos = Vector2( 376.298, 162.357 )
+transform/scale = Vector2( 1.01488, 1.01488 )
+texture = ExtResource( 8 )
+
+[node name="Start Button" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 155.0
+margin/top = 353.0
+margin/right = 624.0
+margin/bottom = 417.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_fonts/font = ExtResource( 9 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Press Button to Start"
+flat = true
+script/script = SubResource( 6 )
+
+[node name="Tower" type="Sprite" parent="."]
+
+transform/pos = Vector2( 878, 434.108 )
+transform/scale = Vector2( 0.958147, 1.0542 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tower"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 1.01801, -0.23938 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 8 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 1.01801, -0.23938 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 9 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 1.01801, -0.23938 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 10 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 1.01801, -0.23938 )
+shapes/3/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Tower/StaticBody2D"]
+
+transform/pos = Vector2( 1.01801, -0.23938 )
+build_mode = 0
+polygon = Vector2Array( -136.805, 171.67, -139.929, -189.549, -144.359, -195.315, -143.914, -203.16, -150.553, -212.835, -153.789, -220.534, -153.769, -263.985, -156.05, -268.739, -151.221, -279.466, -134.724, -283.733, -108.766, -285.915, -93.2788, -290.194, -46.1617, -292.391, 5.75397, -292.854, 55.6337, -289.616, 92.7891, -284.527, 115.184, -278.051, 107.527, -201.476, 103.308, 172.018 )
+shape_range = Vector2( 0, 3 )
+trigger = false
+
+[node name="Toaster" type="Sprite" parent="Tower"]
+
+transform/pos = Vector2( -15.1457, -106.083 )
+transform/scale = Vector2( 3.54735, 3.54735 )
+texture = ExtResource( 11 )
+modulate = Color( 0.800781, 0.800781, 0.800781, 0.912588 )
+
+[node name="Environment" type="Node2D" parent="."]
+
+script/script = ExtResource( 12 )
+fade_time = 1.0
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
+
+color = Color( 1, 1, 1, 1 )
+
+[node name="Tween" type="Tween" parent="Environment"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="StreamPlayer" parent="Environment" instance=ExtResource( 13 )]
+
+[connection signal="button_down" from="Start Button" to="Environment" method="_on_Start_Button_button_down"]
+
+[connection signal="pressed" from="Start Button" to="Environment" method="_on_Start_Button_pressed"]
+
+[connection signal="tween_complete" from="Environment/Tween" to="Environment" method="_on_Tween_tween_complete"]
+
+

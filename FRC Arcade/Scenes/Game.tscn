@@ -1,0 +1,454 @@
+[gd_scene load_steps=19 format=1]
+
+[ext_resource path="res://scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://Textures/carpet.jpg" type="Texture" id=2]
+[ext_resource path="res://Textures/StrongholdField.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Robot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Textures/robot red.png" type="Texture" id=5]
+[ext_resource path="res://Textures/robot blue.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Ball.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Half field.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Textures/blue castle.png" type="Texture" id=9]
+[ext_resource path="res://Textures/SecretPassageBlue.png" type="Texture" id=10]
+[ext_resource path="res://scripts/fadeIn.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/StreamPlayer.tscn" type="PackedScene" id=12]
+[ext_resource path="res://fonts/Emulogic.fnt" type="BitmapFont" id=13]
+[ext_resource path="res://scripts/Countdown timer.gd" type="Script" id=14]
+[ext_resource path="res://scripts/scoreDisplay.gd" type="Script" id=15]
+[ext_resource path="res://scripts/start timer.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/screen tint.tscn" type="PackedScene" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 11.9237, 39.6841 )
+
+[node name="Root" type="Node2D"]
+
+visibility/behind_parent = true
+script/script = ExtResource( 1 )
+red_bot_path = NodePath("Field/Robots/Red/Robot")
+blue_bot_path = NodePath("Field/Robots/Blue/Robot")
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="Carpet" type="TextureFrame" parent="Field"]
+
+rect/scale = Vector2( 0.3, 0.3 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 46.0
+margin/top = 73.0
+margin/right = 3147.0
+margin/bottom = 1591.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="Image" type="Sprite" parent="Field"]
+
+visibility/visible = false
+transform/pos = Vector2( 511.376, 298.514 )
+transform/rot = 90.0
+transform/scale = Vector2( 1.20119, 1.20119 )
+texture = ExtResource( 3 )
+
+[node name="Robots" type="Node2D" parent="Field"]
+
+z/z = 1
+
+[node name="Red" type="Node2D" parent="Field/Robots"]
+
+editor/display_folded = true
+
+[node name="Robot" parent="Field/Robots/Red" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 577.065, 260.056 )
+transform/rot = -90.0
+collision/mask = 77
+input_prefix = "red_"
+use_joystick = false
+balls_path = NodePath("../../../Balls")
+
+[node name="Sprite" parent="Field/Robots/Red/Robot"]
+
+texture = ExtResource( 5 )
+
+[node name="Blue" type="Node2D" parent="Field/Robots"]
+
+[node name="Robot" parent="Field/Robots/Blue" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 434.737, 344.968 )
+transform/rot = 90.0
+input_prefix = "blue_"
+use_joystick = false
+balls_path = NodePath("../../../Balls")
+
+[node name="Sprite" parent="Field/Robots/Blue/Robot"]
+
+texture = ExtResource( 6 )
+
+[node name="Balls" type="Node2D" parent="Field"]
+
+editor/display_folded = true
+
+[node name="Ball" parent="Field/Balls" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 512.002, 262.001 )
+lin_damp = null
+
+[node name="Ball 2" parent="Field/Balls" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 511.794, 197.432 )
+lin_damp = null
+
+[node name="Ball3" parent="Field/Balls" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 511.794, 129.212 )
+lin_damp = null
+
+[node name="Ball4" parent="Field/Balls" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 511.794, 329.892 )
+lin_damp = null
+
+[node name="Ball5" parent="Field/Balls" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 511.794, 399.63 )
+lin_damp = null
+
+[node name="Ball6" parent="Field/Balls" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 511.794, 467.904 )
+lin_damp = null
+
+[node name="Walls" type="StaticBody2D" parent="Field"]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 43.056, 0, 0, 1, 511.448, 33.7916 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 1 )
+shapes/1/transform = Matrix32( 43.056, 0, 0, 1, 514.576, 567.973 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 1 )
+shapes/2/transform = Matrix32( 3.63724, 0, 0, 8.88085, 2.80325, 289.62 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 1 )
+shapes/3/transform = Matrix32( 3.63724, 0, 0, 8.88085, 1019.99, 294.624 )
+shapes/3/trigger = false
+collision/layers = 1
+collision/mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="wall1" type="CollisionShape2D" parent="Field/Walls"]
+
+transform/pos = Vector2( 511.448, 33.7916 )
+transform/scale = Vector2( 43.056, 1 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="wall2" type="CollisionShape2D" parent="Field/Walls"]
+
+transform/pos = Vector2( 514.576, 567.973 )
+transform/scale = Vector2( 43.056, 1 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 1
+
+[node name="wall3" type="CollisionShape2D" parent="Field/Walls"]
+
+transform/pos = Vector2( 2.80325, 289.62 )
+transform/scale = Vector2( 3.63724, 8.88085 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 2
+
+[node name="wall4" type="CollisionShape2D" parent="Field/Walls"]
+
+transform/pos = Vector2( 1019.99, 294.624 )
+transform/scale = Vector2( 3.63724, 8.88085 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 3
+
+[node name="red Half field" parent="Field" instance=ExtResource( 8 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 1.41364 )
+z/z = 2
+
+[node name="Castle" parent="Field/red Half field"]
+
+editor/display_folded = true
+
+[node name="score collider" parent="Field/red Half field/Castle" groups=[
+"red goal",
+]]
+
+[node name="secret passage" parent="Field/red Half field"]
+
+collision/layers = 0
+collision/mask = 0
+
+[node name="blue Half field" parent="Field" instance=ExtResource( 8 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 1022.69, 600.32 )
+transform/rot = 180.0
+z/z = 2
+is_red = null
+
+[node name="Sprite" parent="Field/blue Half field/Castle"]
+
+texture = ExtResource( 9 )
+
+[node name="score collider" parent="Field/blue Half field/Castle" groups=[
+"blue goal",
+]]
+
+[node name="secret passage" parent="Field/blue Half field"]
+
+collision/layers = 0
+collision/mask = 0
+
+[node name="Sprite" parent="Field/blue Half field/secret passage"]
+
+texture = ExtResource( 10 )
+
+[node name="Environment" type="Node2D" parent="."]
+
+editor/display_folded = true
+script/script = ExtResource( 11 )
+fade_time = 0.5
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Environment"]
+
+visibility/visible = false
+color = Color( 0.00390625, 0.00390625, 0.00390625, 1 )
+
+[node name="Tween" type="Tween" parent="Environment"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="StreamPlayer" parent="Environment" instance=ExtResource( 12 )]
+
+delay = 1.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+transform/pos = Vector2( -20.4057, -76.1812 )
+
+[node name="Node2D1" type="Node2D" parent="."]
+
+transform/pos = Vector2( -20.4057, -76.1812 )
+
+[node name="GUI" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Time remaining text" type="Label" parent="GUI/Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 345.0
+margin/top = 4.0
+margin/right = 681.0
+margin/bottom = 82.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "time remaining"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Time remaining" type="Label" parent="GUI/Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 444.0
+margin/top = 35.0
+margin/right = 780.0
+margin/bottom = 113.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "135"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 14 )
+endgame_time = 20.0
+endgame_color = Color( 1, 0, 0, 1 )
+
+[node name="Timer" type="Timer" parent="GUI/Control/Time remaining"]
+
+process_mode = 1
+wait_time = 135.0
+one_shot = true
+autostart = false
+
+[node name="red score text" type="Label" parent="GUI/Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 753.0
+margin/top = 3.0
+margin/right = 969.0
+margin/bottom = 81.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "red score"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="red score" type="Label" parent="GUI/Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 753.0
+margin/top = 35.0
+margin/right = 969.0
+margin/bottom = 113.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "red score"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 15 )
+
+[node name="blue score text" type="Label" parent="GUI/Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 51.0
+margin/top = 4.0
+margin/right = 291.0
+margin/bottom = 82.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0, 0, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "blue score"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="blue score" type="Label" parent="GUI/Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 52.0
+margin/top = 35.0
+margin/right = 292.0
+margin/bottom = 113.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0, 0, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "blue score"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 15 )
+
+[node name="start countdown" type="Node2D" parent="."]
+
+editor/display_folded = true
+z/z = 1000
+
+[node name="Time remaining" type="Label" parent="start countdown"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 500.0
+margin/top = 280.0
+margin/right = 524.0
+margin/bottom = 312.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+text = "5"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = ExtResource( 16 )
+
+[node name="Timer" type="Timer" parent="start countdown/Time remaining"]
+
+process_mode = 1
+wait_time = 5.9
+one_shot = true
+autostart = true
+
+[node name="screen tint" parent="start countdown/Time remaining" instance=ExtResource( 17 )]
+
+[node name="Tween" type="Tween" parent="start countdown/Time remaining"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="Tween1" type="Tween" parent="start countdown/Time remaining"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="poll_endgame" from="." to="Field/red Half field" method="_on_Root_poll_endgame"]
+
+[connection signal="poll_endgame" from="." to="Field/blue Half field" method="_on_Root_poll_endgame"]
+
+[connection signal="end" from="GUI/Control/Time remaining" to="." method="_on_Time_remaining_end"]
+
+[connection signal="game_start" from="start countdown/Time remaining" to="." method="_on_game_start"]
+
+
+[editable path="Field/Robots/Red/Robot"]
+[editable path="Field/Robots/Blue/Robot"]
+[editable path="Field/red Half field"]
+[editable path="Field/blue Half field"]

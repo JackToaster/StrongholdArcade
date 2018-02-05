@@ -1,0 +1,19 @@
+[gd_scene format=1]
+
+[node name="screen tint" type="Polygon2D"]
+
+transform/pos = Vector2( -500, -280 )
+z/z = -1
+polygon = Vector2Array( -64.6057, -12.4591, 1114.84, -12.4591, 1120.28, 607.874, -52.3623, 611.955 )
+uv = Vector2Array(  )
+color = Color( 0, 0, 0, 0.792353 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+

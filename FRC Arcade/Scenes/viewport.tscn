@@ -1,0 +1,127 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://scripts/rootNode.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menu.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = {
+"fragment": "
+uniform vec2 redBleed = vec2(0.000,0);
+uniform vec2 greenBleed = vec2(0.000, 0);
+uniform vec2 blueBleed = vec2(0,0);
+uniform vec3 bleedAmount = vec3(0,0,0);
+
+uniform vec3 tint = vec3(1.34,1.5,1.5);
+
+uniform float scanLineCount = 256;
+uniform float scanLineWidth = 0.5;
+uniform float scanLineWeight = 0.02;
+uniform float scanLineSpeed = 16.3123;
+
+uniform float barrelPower = 1.02;
+
+vec4 bleed(vec2 uvInput){
+	vec4 out = tex(TEXTURE, uvInput);
+	vec4 bleedOut = vec4(1.0);
+	bleedOut.r = tex(TEXTURE, uvInput + redBleed).r;
+	out.r = mix(out.r, bleedOut.r, bleedAmount.r);
+	bleedOut.g = tex(TEXTURE, uvInput + greenBleed).g;
+	out.g = mix(out.g, bleedOut.g, bleedAmount.g);
+	bleedOut.b = tex(TEXTURE, uvInput + blueBleed).b;
+	out.b = mix(out.b, bleedOut.b, bleedAmount.b);
+	
+	return out;
+}
+
+vec2 distortUv(vec2 uvInput){
+
+	vec2 centered = 2.0 * uvInput - vec2(1.0);
+	float angle = atan(centered.y/centered.x);
+	if(centered.x < 0.0){
+		angle += 3.1415926535;;
+	}
+	float dist = pow(length(centered), barrelPower);
+	centered = vec2(dist * cos(angle), dist * sin(angle));
+	return 0.5 * (centered + vec2(1.0));
+}
+
+float scanLines(vec2 uvInput){
+	float out = scanLineWeight;
+	if(fract(uvInput.y * scanLineCount + TIME * scanLineSpeed) > scanLineWidth){
+		out = 0;
+	}
+	return out;
+}
+
+//vec2 distorted = UV;
+vec2 distorted = distortUv(UV);
+
+COLOR = bleed(distorted);
+//COLOR = tex(TEXTURE, distorted);
+
+COLOR = mix(COLOR, vec4(0), scanLines(distorted));
+
+COLOR.rgb = COLOR.rgb * tint;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/redBleed = Vector2( 0.0015, 0 )
+shader_param/greenBleed = Vector2( -0.001, 0 )
+shader_param/blueBleed = Vector2( 0, 0 )
+shader_param/bleedAmount = Vector3( 0.3, 0.3, 0 )
+shader_param/tint = Vector3( 1.34, 1.5, 1.5 )
+shader_param/scanLineCount = 256.0
+shader_param/scanLineWidth = 0.5
+shader_param/scanLineWeight = 0.02
+shader_param/scanLineSpeed = 16.3123
+shader_param/barrelPower = 1.02
+
+[node name="root" type="Node2D"]
+
+script/script = ExtResource( 1 )
+highscore_path = "res://scores.scores"
+
+[node name="Viewport" type="Viewport" parent="."]
+
+rect = Rect2( 0, 0, 1024, 600 )
+own_world = false
+world = null
+transparent_bg = false
+render_target/enabled = true
+render_target/v_flip = false
+render_target/clear_on_new_frame = true
+render_target/filter = false
+render_target/gen_mipmaps = false
+render_target/update_mode = 2
+audio_listener/enable_2d = false
+audio_listener/enable_3d = false
+physics/object_picking = false
+gui/disable_input = false
+
+[node name="Root" parent="Viewport" instance=ExtResource( 2 )]
+
+[node name="ViewportSprite" type="ViewportSprite" parent="."]
+
+material/material = SubResource( 2 )
+viewport = NodePath("../Viewport")
+centered = false
+
+[node name="input timeout" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="input timeout" to="." method="_on_input_timeout_timeout"]
+
+

@@ -1,0 +1,485 @@
+[gd_scene load_steps=27 format=1]
+
+[ext_resource path="res://scripts/Half field.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Divider.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Textures/defense base.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/defense.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Defenses/Low bar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Textures/red castle.png" type="Texture" id=6]
+[ext_resource path="res://Textures/batter.png" type="Texture" id=7]
+[ext_resource path="res://scripts/CastleScore.gd" type="Script" id=8]
+[ext_resource path="res://scripts/CastleSensor.gd" type="Script" id=9]
+[ext_resource path="res://Textures/defense health.png" type="Texture" id=10]
+[ext_resource path="res://scripts/BallAdder.gd" type="Script" id=11]
+[ext_resource path="res://Textures/SecretPassageRed.png" type="Texture" id=12]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 45.8, 241.135, 80, 259.487, 80, 299.705, 45.8, 318.504 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 45.8, 251.135, 70, 264.487, 70, 293.705, 45.8, 308.504 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 45.8, 251.135, 70, 264.487, 62.5964, 270.181 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 45.8, 308.504, 45.8, 251.135, 62.5964, 270.181, 62.5964, 288.167 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 45.8, 308.504, 62.5964, 288.167, 70, 293.705 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 80.0057, 299.711, 70.0292, 293.717, 62.6658, 288.167, 62.6658, 270.32, 70.0292, 264.516, 80.0119, 259.537 )
+
+[sub_resource type="ConvexPolygonShape2D" id=15]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+
+[sub_resource type="RectangleShape2D" id=11]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="ConvexPolygonShape2D" id=14]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 46.0803, 221.213, 90.1712, 252.748, 90.1712, 305.891, 46.3723, 336.258 )
+
+[sub_resource type="RectangleShape2D" id=12]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="RectangleShape2D" id=13]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="Half field" type="Node2D"]
+
+script/script = ExtResource( 1 )
+defenses_path = "res://Scenes/Defenses"
+is_red = true
+
+[node name="Defenses" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="Dividers" type="Node2D" parent="Defenses"]
+
+editor/display_folded = true
+
+[node name="Divider1" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 95.0903, 250.424 )
+transform/rot = 30.0
+transform/scale = Vector2( 0.587578, 1 )
+
+[node name="Divider2" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 95.3977, 308.263 )
+transform/rot = -30.0
+transform/scale = Vector2( 0.587578, 1 )
+
+[node name="Divider3" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 349.357, 454.644 )
+transform/scale = Vector2( 1.18828, 1 )
+
+[node name="Divider4" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 349.357, 381.206 )
+transform/scale = Vector2( 1.18828, 1 )
+
+[node name="Divider5" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 349.357, 308.234 )
+transform/scale = Vector2( 1.18828, 1 )
+
+[node name="Divider6" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 349.357, 235.188 )
+transform/scale = Vector2( 1.18828, 1 )
+
+[node name="Divider7" parent="Defenses/Dividers" instance=ExtResource( 2 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 349.357, 163.34 )
+transform/scale = Vector2( 1.18828, 1 )
+
+[node name="Sprite" type="Sprite" parent="Defenses"]
+
+transform/pos = Vector2( 349.043, 345.141 )
+transform/scale = Vector2( 0.555532, 0.709588 )
+z/relative = false
+texture = ExtResource( 3 )
+
+[node name="defense0" parent="Defenses" instance=ExtResource( 4 )]
+
+[node name="defense1" parent="Defenses" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 348.986, 271.632 )
+
+[node name="defense2" parent="Defenses" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 348.986, 344.634 )
+transform/scale = Vector2( 1.11768, 1.11768 )
+
+[node name="defense3" parent="Defenses" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 348.986, 418.165 )
+
+[node name="defense4 lowbar" parent="Defenses" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 348.986, 491.114 )
+
+[node name="Low bar" parent="Defenses/defense4 lowbar" instance=ExtResource( 5 )]
+
+[node name="Castle" type="Node2D" parent="."]
+
+z/z = 10
+
+[node name="Sprite" type="Sprite" parent="Castle"]
+
+transform/pos = Vector2( 27.4025, 288.674 )
+transform/scale = Vector2( 0.399928, 0.399928 )
+z/z = 10
+z/relative = false
+texture = ExtResource( 6 )
+flip_h = true
+flip_v = true
+
+[node name="batter" type="Sprite" parent="Castle"]
+
+transform/pos = Vector2( 92.4812, 280.142 )
+transform/rot = 90.0
+transform/scale = Vector2( 0.696128, 0.696128 )
+z/z = 1
+z/relative = false
+texture = ExtResource( 7 )
+
+[node name="Colliders" type="StaticBody2D" parent="Castle"]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = true
+collision/layers = 8
+collision/mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Bot collision" type="CollisionPolygon2D" parent="Castle/Colliders"]
+
+build_mode = 0
+polygon = Vector2Array( 45.8, 241.135, 80, 259.487, 80, 299.705, 45.8, 318.504 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="score collider" type="StaticBody2D" parent="Castle"]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+shapes/1/shape = SubResource( 4 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = true
+shapes/2/shape = SubResource( 5 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = true
+collision/layers = 32
+collision/mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = ExtResource( 8 )
+
+[node name="Score collision" type="CollisionPolygon2D" parent="Castle/score collider"]
+
+build_mode = 0
+polygon = Vector2Array( 45.8, 251.135, 70, 264.487, 62.5964, 270.181, 62.5964, 288.167, 70, 293.705, 45.8, 308.504 )
+shape_range = Vector2( 0, 2 )
+trigger = true
+
+[node name="ground blocker" type="StaticBody2D" parent="Castle"]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 16
+collision/mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Castle/ground blocker"]
+
+build_mode = 0
+polygon = Vector2Array( 80.0057, 299.711, 70.0292, 293.717, 62.6658, 288.167, 62.6658, 270.32, 70.0292, 264.516, 80.0119, 259.537 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="castle blocker" type="StaticBody2D" parent="Castle"]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 15 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 16 )
+shapes/1/transform = Matrix32( 0.488731, -0.872435, 0.872435, 0.488731, -220.589, 182.656 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 17 )
+shapes/2/transform = Matrix32( -0.529061, -0.848584, 0.848584, -0.529061, -166.07, 467.499 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 18 )
+shapes/3/transform = Matrix32( 0.494394, 0.869238, -0.869238, 0.494394, 266.688, 100.8 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 11 )
+shapes/4/transform = Matrix32( 2.6932, 0, 0, 25.0024, 19.3737, 286.285 )
+shapes/4/trigger = false
+collision/layers = 32
+collision/mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Castle/castle blocker"]
+
+build_mode = 0
+polygon = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Castle/castle blocker"]
+
+transform/pos = Vector2( -220.589, 182.656 )
+transform/rot = 60.7428
+build_mode = 0
+polygon = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+shape_range = Vector2( 1, 1 )
+trigger = false
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Castle/castle blocker"]
+
+transform/pos = Vector2( -166.07, 467.499 )
+transform/rot = 121.942
+build_mode = 0
+polygon = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+shape_range = Vector2( 2, 2 )
+trigger = false
+
+[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="Castle/castle blocker"]
+
+transform/pos = Vector2( 266.688, 100.8 )
+transform/rot = -60.3702
+build_mode = 0
+polygon = Vector2Array( 80.0228, 299.728, 76.3053, 301.808, 70.0157, 293.73, 80.0336, 295.495 )
+shape_range = Vector2( 3, 3 )
+trigger = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Castle/castle blocker"]
+
+transform/pos = Vector2( 19.3737, 286.285 )
+transform/scale = Vector2( 2.6932, 25.0024 )
+shape = SubResource( 11 )
+trigger = false
+_update_shape_index = 4
+
+[node name="bot sensor" type="Area2D" parent="Castle"]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 14 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 9 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Castle/bot sensor"]
+
+build_mode = 0
+polygon = Vector2Array( 46.3723, 336.258, 90.1712, 305.891, 90.1712, 252.748, 46.0803, 221.213 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="health" type="Node2D" parent="Castle"]
+
+editor/display_folded = true
+transform/pos = Vector2( -31.0421, -98.0861 )
+transform/scale = Vector2( 1.17021, 1.17021 )
+z/z = 11
+z/relative = false
+
+[node name="0" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 510 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="1" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 470 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="2" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 430 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="3" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 390 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="4" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 350 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="5" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 310 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="6" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 270 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="7" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 230 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="8" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 190 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="9" type="Sprite" parent="Castle/health"]
+
+transform/pos = Vector2( 30, 150 )
+transform/scale = Vector2( 0.34602, 0.34602 )
+texture = ExtResource( 10 )
+
+[node name="ball adder" type="Node2D" parent="Castle"]
+
+transform/pos = Vector2( 31.8817, 103.75 )
+script/script = ExtResource( 11 )
+add_delay = 8.0
+ball_vel = 350.0
+ball_rand_x = 10.0
+ball_rand_y = 10.0
+
+[node name="Ball Blocker" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 12 )
+shapes/0/transform = Matrix32( 3.5694, 0, 0, 18.2721, 348.939, 345.515 )
+shapes/0/trigger = false
+collision/layers = 32
+collision/mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball Blocker"]
+
+transform/pos = Vector2( 348.939, 345.515 )
+transform/scale = Vector2( 3.5694, 18.2721 )
+shape = SubResource( 12 )
+trigger = false
+_update_shape_index = 0
+
+[node name="secret passage" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 0, 12.7721 )
+input/pickable = false
+shapes/0/shape = SubResource( 13 )
+shapes/0/transform = Matrix32( 19.8955, 0, 0, 5.38866, 245.043, 96.447 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secret passage"]
+
+transform/pos = Vector2( 245.043, 96.447 )
+transform/scale = Vector2( 19.8955, 5.38866 )
+shape = SubResource( 13 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="secret passage"]
+
+transform/pos = Vector2( 214.444, 104.96 )
+transform/rot = 90.0
+transform/scale = Vector2( 0.681295, 0.681295 )
+z/z = 1
+z/relative = false
+texture = ExtResource( 12 )
+
+[connection signal="poll_endgame" from="." to="Castle/bot sensor" method="_on_Half_field_poll_endgame"]
+
+

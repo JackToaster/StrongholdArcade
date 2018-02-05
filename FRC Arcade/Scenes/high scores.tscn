@@ -1,0 +1,5 @@
+[gd_scene format=1]
+
+[node name="high scores" type="Node2D"]
+
+
