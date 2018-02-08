@@ -31,6 +31,10 @@ export(float) var right_defense_center
 #how far the bot has to go to exit or succeed.
 export(float) var defense_judgement_dist
 
+#top and bottom of defenses to avoid cheating
+export(float) var left_def_top
+export(float) var right_def_bot
+
 export(NodePath) var balls_path
 
 
@@ -81,29 +85,25 @@ func _fixed_process(delta):
 	set_angular_velocity(angVel + ang_force * delta)
 	
 	#check if the bot is in the defenses
-	if abs(get_global_pos().x - left_defense_center) < defense_judgement_dist or abs(get_global_pos().x - right_defense_center) < defense_judgement_dist:
+	if is_in_defenses():
 		if !crossing_defense:
 			crossing_defense = true
 			right_of_defense = get_right_of_defense()
 	elif crossing_defense:
 		crossing_defense = false
-		if get_right_of_defense() != right_of_defense:
-			#print that it's crossed and reset it
-			print("Crossed defenses")
-			print(last_defense)
+		#check if the defense was crossed
+		if get_right_of_defense() != right_of_defense :
 			if last_defense != null:
 				if last_defense.is_in_group("resettable"):
 					last_defense.call("reset")
-				var defense_container = last_defense.get_node("..")
-				defense_container.call("damage")
+				#Check if the defense was crossed in the correct direction.
+				if (get_right_of_defense() and get_closer_to_right()) or (!get_right_of_defense() and !get_closer_to_right()):
+					var defense_container = last_defense.get_node("..")
+					defense_container.call("damage")
 			else:
+				#print error if the defense isn't found
 				print("Error - no defense found!")
-			#do other stuff
-			
-		else:
-			print("Failed to cross defenses")
-			
-	
+
 
 #check if the bot is to the left or right of the closest defense
 func get_right_of_defense():
@@ -112,6 +112,15 @@ func get_right_of_defense():
 		return get_global_pos().x > left_defense_center
 	else:
 		return get_global_pos().x > right_defense_center
+
+#check if the bot is right or left of the defense
+func get_closer_to_right():
+	return abs(get_global_pos().x - left_defense_center) > abs(get_global_pos().x - right_defense_center)
+
+#check if the bot is inside the defenses
+func is_in_defenses():
+	return (abs(get_global_pos().x - left_defense_center) < defense_judgement_dist and get_global_pos().y > left_def_top)\
+	 or (abs(get_global_pos().x - right_defense_center) < defense_judgement_dist and get_global_pos().y < right_def_bot)
 
 func get_inputs():
 	if use_joystick:

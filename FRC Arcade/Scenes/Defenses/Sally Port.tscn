@@ -135,6 +135,7 @@ damping = 0.2
 
 [node name="blocker" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 11.8336, 2.05116 )

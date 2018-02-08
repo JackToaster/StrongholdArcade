@@ -72,6 +72,7 @@ velocity/angular = 0.0
 damp_override/linear = 15.0
 damp_override/angular = 15.0
 script/script = ExtResource( 1 )
+input_prefix = null
 linImpulse = 3000.0
 angImpulse = 100.0
 use_joystick = true
@@ -82,6 +83,8 @@ reload_delay = 0.25
 left_defense_center = 350.0
 right_defense_center = 675.0
 defense_judgement_dist = 50.0
+left_def_top = 165.0
+right_def_bot = 440.0
 balls_path = NodePath("")
 
 [node name="Sprite" type="Sprite" parent="."]

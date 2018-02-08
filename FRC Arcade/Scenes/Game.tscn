@@ -32,6 +32,8 @@ blue_bot_path = NodePath("Field/Robots/Blue/Robot")
 
 [node name="Field" type="Node2D" parent="."]
 
+editor/display_folded = true
+
 [node name="Carpet" type="TextureFrame" parent="Field"]
 
 rect/scale = Vector2( 0.3, 0.3 )
@@ -244,15 +246,13 @@ playback/speed = 1.0
 
 delay = 1.0
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="measurement" type="Node2D" parent="."]
 
-transform/pos = Vector2( -20.4057, -76.1812 )
-
-[node name="Node2D1" type="Node2D" parent="."]
-
-transform/pos = Vector2( -20.4057, -76.1812 )
+transform/pos = Vector2( -32.6492, -46.253 )
 
 [node name="GUI" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Control" type="Control" parent="GUI"]
 
@@ -439,9 +439,9 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[connection signal="poll_endgame" from="." to="Field/red Half field" method="_on_Root_poll_endgame"]
-
 [connection signal="poll_endgame" from="." to="Field/blue Half field" method="_on_Root_poll_endgame"]
+
+[connection signal="poll_endgame" from="." to="Field/red Half field" method="_on_Root_poll_endgame"]
 
 [connection signal="end" from="GUI/Control/Time remaining" to="." method="_on_Time_remaining_end"]
 
